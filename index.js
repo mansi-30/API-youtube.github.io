@@ -1,4 +1,4 @@
-let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCc1vWocCyY921yDvAQBiTwhDx5uKTskFU&type=video&part=snippet&maxResults=100&q=";
+let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBV9qwBashg1YZKp0gxfWVCV9RRNNBX7jk&part=snippet&maxResults=100&q=";
 
 let VIDEOS = {};
 let pageNo = 0;
