@@ -1,8 +1,15 @@
 let url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBV9qwBashg1YZKp0gxfWVCV9RRNNBX7jk&part=snippet&maxResults=100&q=";
-
 let VIDEOS = {};
 let pageNo = 0;
 let maxPages = 0;
+async function myFunc(){
+    await fetch(url+"DSA")
+    .then(res=> res.json()).
+    then(data=>{
+        VIDEOS = data.items;
+        renderThumbnails();
+    });
+}
 async function getData(){
     pageNo = 0;
     var keyword = document.getElementById('search-box').value;
@@ -15,7 +22,6 @@ async function getData(){
     });
     document.getElementById('result').innerText = "Showing result for: "+ keyword;
 }
-
 function render(){
     let html = ``;
             html += `
@@ -51,6 +57,41 @@ function render(){
                         </div>
                     </div>
                 </div>
+                <hr class="hr-main">
+
+                <div class="container" id="my-video">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="video-tile">${VIDEOS[3*pageNo+3].snippet.title.slice(0,80)}</div>
+                        <div class="my-1"><img class="img-fluid" src=${VIDEOS[3*pageNo+3].snippet.thumbnails.medium.url}></div>
+                        <div class="row my-1">
+                            <div class="col-6 font-italic">${VIDEOS[3*pageNo+3].snippet.channelTitle}</div>
+                            <div class="col-6 font-italic date">${VIDEOS[3*pageNo+3].snippet.publishedAt.slice(0,10)}</div>
+                        </div>
+                        <div class="mt-3 desc">${VIDEOS[3*pageNo+3].snippet.description}</div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="video-tile">${VIDEOS[3*pageNo+4].snippet.title.slice(0,80)}</div>
+                        <div class="my-1"><img class="img-fluid" src=${VIDEOS[3*pageNo+4].snippet.thumbnails.medium.url}></div>
+                        <div class="row my-1">
+                            <div class="col-6 font-italic">${VIDEOS[3*pageNo+4].snippet.channelTitle}</div>
+                            <div class="col-6 font-italic date">${VIDEOS[3*pageNo+4].snippet.publishedAt.slice(0,10)}</div>
+                        </div>
+                        <div class="mt-3 desc">${VIDEOS[3*pageNo+4].snippet.description}</div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="video-tile">${VIDEOS[3*pageNo+5].snippet.title.slice(0,80)}</div>
+                        <div class="my-1"><img class="img-fluid" src=${VIDEOS[3*pageNo+5].snippet.thumbnails.medium.url}></div>
+                        <div class="row my-1">
+                            <div class="col-6 font-italic">${VIDEOS[3*pageNo+5].snippet.channelTitle}</div>
+                            <div class="col-6 font-italic date">${VIDEOS[3*pageNo+5].snippet.publishedAt.slice(0,10)}</div>
+                        </div>
+                        <div class="mt-3 desc">${VIDEOS[3*pageNo+5].snippet.description}</div>
+                    </div>
+                </div>
+            </div>
                 <div class="counter-section mt-3">
                     <div class="row"> 
                         <button class="btn btn-danger col-4 btn-1 p-1" onclick="getPreviousPage()"> Previous</button>
@@ -83,17 +124,3 @@ function renderThumbnails(){
     maxPages = parseInt(size/3); 
     render();
 }
-
-
-{/* <div class="col-sm-">
-                    <div>${VIDEOS[i].snippet.title}</div>
-                    <div><img src=${VIDEOS[i].snippet.thumbnails.default.url}></div>
-                </div>
-                <div class="col-sm-">
-                    <div>${VIDEOS[i+1].snippet.title}</div>
-                    <div><img src=${VIDEOS[i+1].snippet.thumbnails.default.url}></div>
-                </div>
-                <div class="col-sm-">
-                    <div>${VIDEOS[i+2].snippet.title}</div>
-                    <div><img src=${VIDEOS[i+2].snippet.thumbnails.default.url}></div>
-                </div> */}
