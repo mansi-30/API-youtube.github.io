@@ -124,4 +124,3 @@ function renderThumbnails(){
     maxPages = parseInt(size/3); 
     render();
 }
-
